@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Візитівка</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Адаптивная сітка */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff8c00;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            /* Додано ефект до заголовків */
+            text-shadow: 2px 2px #f0f0f0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        /* Модальне вікно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Адаптивная сітка */
+        @media screen and (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Візитівка</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Головна</a></li>
+                <li><a href="about.html">Про нас</a></li>
+                <li><a href="services.html">Послуги</a></li>
+                <li><a href="#portfolio">Портфоліо</a></li>
+                <li><a href="#contact">Контакти</a></li>
+                <li><button id="loginBtn">Увійти</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home">
+            <h2>Ласкаво просимо!</h2>
+            <p>Вітаємо на нашому веб-сайті. Тут ви знайдете інформацію про нашу компанію.</p>
+            <img src="https://res.cloudinary.com/dj9lddsqp/image/upload/v1715614218/austin-chan-ukzHlkoz1IE-unsplash_kro0xu.jpg" alt="Зображення">
+        </section>
+
+        <section id="portfolio">
+            <h2>Портфоліо</h2>
+            <p>Тут ми демонструємо наші найкращі проекти та роботи.</p>
+            <img src="https://res.cloudinary.com/dj9lddsqp/image/upload/v1715614222/scott-graham-5fNmWej4tAA-unsplash_nktn67.jpg" alt="Зображення">
+        </section>
+
+        <section id="contact">
+            <h2>Контакти</h2>
+            <p>Зв'яжіться з нами, щоб дізнатися більше про нашу компанію або наші послуги.</p>
+            <img src="https://res.cloudinary.com/dj9lddsqp/image/upload/v1715614217/pexels-joenibraw-1416530_zreu8l.jpg" alt="Зображення">
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Візитівка. Усі права захищені.</p>
+        <div>
+            <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+        <a href="https://twitter.com/" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Модальне вікно -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>ВХІД</h2>
+            <form id="loginForm">
+                <label for="username">Логін:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="password">Пароль:</label><br>
+                <input type="password" id="password" name="password"><br><br>
+                <input type="submit" value="Увійти">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Отримуємо посилання на модальне вікно та кнопку "Увійти"
+        var modal = document.getElementById('modal');
+        var loginBtn = document.getElementById('loginBtn');
+        // Отримуємо посилання на елемент закриття модального вікна
+        var closeBtn = document.getElementsByClassName('close')[0];
+        // Коли користувач клікає на кнопку "Увійти", відкрити модальне вікно
+        loginBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+        // Коли користувач клікає на елемент закриття, закрити модальне вікно
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+        // Коли користувач клікає поза модальним вікном, закрити його
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
